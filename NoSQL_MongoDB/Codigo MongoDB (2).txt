@@ -1,0 +1,166 @@
+CODIGO DE CREACION DE LAS TABLAS EN MONGODB:
+
+use BD_RAPPI;
+
+// 1. Tabla Zonas
+db.zonas.insertMany([
+  { _id: "Z001", nombre: "San Isidro" },
+  { _id: "Z002", nombre: "Miraflores" },
+  { _id: "Z003", nombre: "Surco" },
+  { _id: "Z004", nombre: "Los Olivos" }
+]);
+
+// 2. Tabla Clientes
+db.clientes.insertMany([
+  { _id: "CL001", nombre: "Juan", apellido: "Lopez", correo: "juanlopez@gmail.com", telefono: 987654321, id_referencia: null },
+  { _id: "CL002", nombre: "Maria", apellido: "Perez", correo: "mariap@gmail.com", telefono: 945321789, id_referencia: null },
+  { _id: "CL003", nombre: "Carlos", apellido: "Ramos", correo: "carlosr@hotmail.com", telefono: 986123654, id_referencia: null },
+  { _id: "CL004", nombre: "Lucia", apellido: "Gomez", correo: "luciag@outlook.com", telefono: 952741369, id_referencia: null },
+  { _id: "CL005", nombre: "Pedro", apellido: "Mendoza", correo: "pedrom@gmail.com", telefono: 913258741, id_referencia: null },
+  { _id: "CL006", nombre: "Ana", apellido: "Torres", correo: "ana@gmail.com", telefono: 912345678, id_referencia: null },
+  { _id: "CL007", nombre: "Luis", apellido: "Ramirez", correo: "luis@gmail.com", telefono: 923456789, id_referencia: null },
+  { _id: "CL008", nombre: "Carmen", apellido: "Diaz", correo: "carmen@gmail.com", telefono: 934567890, id_referencia: null }
+]);
+
+// 4. Tabla Repartidores
+db.repartidores.insertMany([
+  { _id: "R001", nombre: "Luis", apellido: "Cruz", estado: "Disponible", vehiculo: "Moto", id_zona: "Z001", telefono: 999888777 },
+  { _id: "R002", nombre: "Erick", apellido: "Reyes", estado: "Disponible", vehiculo: "Bicicleta", id_zona: "Z002", telefono: 988777666 },
+  { _id: "R003", nombre: "Mario", apellido: "Guerra", estado: "Ocupado", vehiculo: "Auto", id_zona: "Z003", telefono: 977666555 },
+  { _id: "R004", nombre: "Sonia", apellido: "Ruiz", estado: "Disponible", vehiculo: "Moto", id_zona: "Z004", telefono: 966555444 },
+  { _id: "R005", nombre: "Hugo", apellido: "Quispe", estado: "Ocupado", vehiculo: "Auto", id_zona: "Z001", telefono: 955444333 },
+  { _id: "R006", nombre: "Pedro", apellido: "Castro", estado: "Disponible", vehiculo: "Moto", id_zona: "Z002", telefono: 911111111 },
+  { _id: "R007", nombre: "Lucia", apellido: "Vargas", estado: "Ocupado", vehiculo: "Bicicleta", id_zona: "Z003", telefono: 922222222 }
+]);
+
+// 5. Tabla Restaurantes
+db.restaurantes.insertMany([
+  { _id: "RS001", nombre: "La Parrilla Roja", direccion: "Av. Los Incas 345", categoria: "Carnes", telefono: 981234567, id_zona: "Z001" },
+  { _id: "RS002", nombre: "Sushi Zen", direccion: "Calle Lima 450", categoria: "Japonesa", telefono: 982345678, id_zona: "Z002" },
+  { _id: "RS003", nombre: "Don Pollo", direccion: "Av. Grau 230", categoria: "Pollos", telefono: 983456789, id_zona: "Z003" },
+  { _id: "RS004", nombre: "Pizza Loca", direccion: "Calle 7 #34", categoria: "Italiana", telefono: 984567890, id_zona: "Z004" },
+  { _id: "RS005", nombre: "El Buen Sabor", direccion: "Av. Tupac 321", categoria: "Criolla", telefono: 985678901, id_zona: "Z001" }
+]);
+
+// 6. Tabla Productos
+db.productos.insertMany([
+  { _id: "PR001", nombre: "Hamburguesa", precio: 12.50, id_restaurante: "RS001" },
+  { _id: "PR002", nombre: "Pizza Familiar", precio: 35.00, id_restaurante: "RS004" },
+  { _id: "PR003", nombre: "Pollo Entero", precio: 25.50, id_restaurante: "RS003" },
+  { _id: "PR004", nombre: "Ceviche", precio: 22.00, id_restaurante: "RS001" },
+  { _id: "PR005", nombre: "Sushi Roll", precio: 20.00, id_restaurante: "RS002" }
+]);
+
+// 7. Tabla Pedidos (con Pagos y Productos juntos)
+db.pedidos.insertMany([
+  {
+    _id: "PD001",
+    fechas: { inicio: new Date("2025-11-01T12:00:00Z"), fin: new Date("2025-11-01T12:40:00Z") },
+    costototal: 25.50,
+    estado: "Entregado",
+    id_cliente: "CL001",
+    id_repartidor: "R001",
+    id_restaurante: "RS001",
+    pago: { id_pago: "PG001", tipo: "Tarjeta", monto: 25.50 },
+    productos: [ { id_producto: "PR001", cantidad: 1 } ]
+  },
+  {
+    _id: "PD002",
+    fechas: { inicio: new Date("2025-11-02T13:00:00Z"), fin: new Date("2025-11-02T13:30:00Z") },
+    costototal: 30.00,
+    estado: "Entregado",
+    id_cliente: "CL002",
+    id_repartidor: "R002",
+    id_restaurante: "RS002",
+    pago: { id_pago: "PG002", tipo: "Yape", monto: 30.00 },
+    productos: [ { id_producto: "PR005", cantidad: 1 } ]
+  },
+  {
+    _id: "PD003",
+    fechas: { inicio: new Date("2025-11-03T14:00:00Z"), fin: new Date("2025-11-03T14:40:00Z") },
+    costototal: 18.00,
+    estado: "Entregado",
+    id_cliente: "CL003",
+    id_repartidor: "R003",
+    id_restaurante: "RS003",
+    pago: { id_pago: "PG003", tipo: "Yape", monto: 12.50 },
+    productos: [ { id_producto: "PR003", cantidad: 1 } ]
+  },
+  {
+    _id: "PD004",
+    fechas: { inicio: new Date("2025-11-04T15:00:00Z"), fin: new Date("2025-11-04T15:50:00Z") },
+    costototal: 40.00,
+    estado: "Entregado",
+    id_cliente: "CL004",
+    id_repartidor: "R004",
+    id_restaurante: "RS004",
+    pago: { id_pago: "PG004", tipo: "Tarjeta", monto: 40.00 },
+    productos: [ { id_producto: "PR002", cantidad: 1 } ]
+  },
+  {
+    _id: "PD005",
+    fechas: { inicio: new Date("2025-11-05T16:00:00Z"), fin: new Date("2025-11-05T16:30:00Z") },
+    costototal: 15.00,
+    estado: "Pendiente",
+    id_cliente: "CL005",
+    id_repartidor: "R005",
+    id_restaurante: "RS001",
+    pago: { id_pago: "PG005", tipo: "Plin", monto: 18.75 },
+    productos: [ { id_producto: "PR004", cantidad: 1 } ]
+  },
+  {
+    _id: "PD006",
+    fechas: { inicio: new Date("2025-11-06T18:00:00Z"), fin: new Date("2025-11-06T18:30:00Z") },
+    costototal: 22.00,
+    estado: "Entregado",
+    id_cliente: "CL001",
+    id_repartidor: "R002",
+    id_restaurante: "RS002",
+    pago: { id_pago: "PG011", tipo: "Yape", monto: 22.00 },
+    productos: [ { id_producto: "PR005", cantidad: 1 } ]
+  },
+  {
+    _id: "PD007",
+    fechas: { inicio: new Date("2025-11-07T12:00:00Z"), fin: new Date("2025-11-07T12:45:00Z") },
+    costototal: 45.00,
+    estado: "Entregado",
+    id_cliente: "CL002",
+    id_repartidor: "R003",
+    id_restaurante: "RS004",
+    pago: { id_pago: "PG012", tipo: "Tarjeta", monto: 45.00 },
+    productos: [ { id_producto: "PR002", cantidad: 1 }, { id_producto: "PR001", cantidad: 1 } ]
+  },
+  {
+    _id: "PD008",
+    fechas: { inicio: new Date("2025-11-07T13:00:00Z"), fin: new Date("2025-11-07T13:30:00Z") },
+    costototal: 18.00,
+    estado: "Entregado",
+    id_cliente: "CL006",
+    id_repartidor: "R006",
+    id_restaurante: "RS001",
+    pago: { id_pago: "PG013", tipo: "Plin", monto: 18.00 },
+    productos: [ { id_producto: "PR004", cantidad: 1 } ]
+  },
+  {
+    _id: "PD009",
+    fechas: { inicio: new Date("2025-11-08T14:00:00Z"), fin: new Date("2025-11-08T14:50:00Z") },
+    costototal: 35.00,
+    estado: "Entregado",
+    id_cliente: "CL007",
+    id_repartidor: "R007",
+    id_restaurante: "RS004",
+    pago: { id_pago: "PG014", tipo: "Tarjeta", monto: 35.00 },
+    productos: [ { id_producto: "PR002", cantidad: 1 } ]
+  },
+  {
+    _id: "PD010",
+    fechas: { inicio: new Date("2025-11-08T15:00:00Z"), fin: new Date("2025-11-08T15:30:00Z") },
+    costototal: 27.50,
+    estado: "Pendiente",
+    id_cliente: "CL008",
+    id_repartidor: "R001",
+    id_restaurante: "RS002",
+    pago: { id_pago: "PG015", tipo: "Yape", monto: 27.50 },
+    productos: [ { id_producto: "PR005", cantidad: 1 } ]
+  }
+]);
