@@ -1,0 +1,13 @@
+﻿sk_zona;sk_cliente;sk_repartidor;sk_restaurante;id_tiempo;id_pedido_origen;id_pago_origen;tipo_pago;monto_total;cantidad_productos;tiempo_entrega_minutos;estado_pedido
+1;1;1;1;20251101;PD001;PG001;Tarjeta;25.5;1;40;Entregado
+2;2;2;2;20251102;PD002;PG002;Yape;30;1;30;Entregado
+3;3;3;3;20251103;PD003;PG003;Yape;18;1;40;Entregado
+4;4;4;4;20251104;PD004;PG004;Tarjeta;40;1;50;Entregado
+1;5;5;1;20251105;PD005;PG005;Plin;15;1;30;Pendiente
+1;1;2;2;20251106;PD006;PG011;Yape;22;1;30;Entregado
+2;2;3;4;20251107;PD007;PG012;Tarjeta;45;2;45;Entregado
+2;6;6;1;20251107;PD008;PG013;Plin;18;1;30;Entregado
+3;7;7;4;20251108;PD009;PG014;Tarjeta;35;1;50;Entregado
+4;8;1;2;20251108;PD010;PG015;Yape;27.5;1;30;Pendiente
+1;5;1;2;20260502;PD020;PG020;Tarjeta;20;1;NULL;Pendiente
+2;2;2;2;20251110;PD102;PG002;Yape;20;0;NULL;Entregado
