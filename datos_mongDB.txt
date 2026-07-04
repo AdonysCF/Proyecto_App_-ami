@@ -1,0 +1,41 @@
+{
+  "_id": "PD999",
+  "fechas": {
+    "inicio": "2026-07-04T12:00:00Z",
+    "fin": null
+  },
+  "costototal": 45.00,
+  "estado": "Pendiente",
+  "cliente": {
+    "id_cliente": "CL001",
+    "nombre": "Juan Lopez",
+    "telefono": 987654321,
+    "direccion": "Av. Javier Prado 123"
+  },
+  "restaurante": {
+    "id_restaurante": "RS001",
+    "nombre": "La Parrilla Roja",
+    "zona": "San Isidro"
+  },
+  "productos": [
+    {
+      "id_producto": "PR001",
+      "nombre": "Hamburguesa",
+      "cantidad": 2,
+      "precio_unitario": 12.50
+    },
+    {
+      "id_producto": "PR004",
+      "nombre": "Ceviche",
+      "cantidad": 1,
+      "precio_unitario": 20.00
+    }
+  ],
+  "pago": {
+    "metodo": "Yape",
+    "monto_pagado": 45.00,
+    "estado_pago": "Confirmado"
+  }
+}
+
+CONEXION: mongodb+srv://equiporappi:rappi123@cluster0.flmgeab.mongodb.net/?appName=Cluster0
